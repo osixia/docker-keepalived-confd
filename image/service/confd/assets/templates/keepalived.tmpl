@@ -29,8 +29,10 @@ vrrp_instance VI_1 {
     {{/* iterate metadata */}}
     {{range $machineMetadataKey, $machineMetadataValue := $machineData.Metadata}}
 
-    {{if eq $keepalived_confd_run_on_fleet_node_metadata_key $machineMetadataKey and eq $keepalived_confd_run_on_fleet_node_metadata_value $machineMetadataValue}}
-    {{machineData.PublicIP}}
+    {{if eq $keepalived_confd_run_on_fleet_node_metadata_key $machineMetadataKey}}
+    {{if eq $keepalived_confd_run_on_fleet_node_metadata_value $machineMetadataValue}}
+    {{$machineData.PublicIP}}
+    {{end}}
     {{end}}
     {{end}}
     {{end}}
