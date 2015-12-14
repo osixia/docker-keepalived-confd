@@ -1,0 +1,47 @@
+vrrp_sync_group VG_1 {
+  group {
+    VI_1
+  }
+
+  {{ keepalived_notify }}
+}
+
+vrrp_instance VI_1 {
+  interface {{ keepalived_interface }}
+
+  track_interface {
+    {{ keepalived_interface }}
+  }
+
+  state BACKUP
+  virtual_router_id 51
+  priority {{ keepalived_priority }}
+  nopreempt
+
+  unicast_peer {
+    {{$keepalived_confd_run_on_fleet_node_metadata_key := getenv "KEEPALIVED_CONFD_RUN_ON_FLEET_NODE_METADATA_KEY"}}
+    {{$keepalived_confd_run_on_fleet_node_metadata_value := getenv "KEEPALIVED_CONFD_RUN_ON_FLEET_NODE_METADATA_VALUE"}}
+
+    {{range $machine := lsdir "/_coreos.com/fleet/machines/"}}
+    {{$machineRawData := getv (print $machine "/object")}}
+    {{$machineData := json $machineRawData}}
+
+    {{/* iterate metadata */}}
+    {{range $machineMetadata := $machineData.Metadata}}
+
+    {{if eq $keepalived_confd_run_on_fleet_node_metadata_key .Key and eq keepalived_confd_run_on_fleet_node_metadata_value .Value }}
+    {{machineData.PublicIP}}
+    {{end}}
+    {{end}}
+    {{end}}
+  }
+
+  virtual_ipaddress {
+    {{ keepalived_virtual_ips }}
+  }
+
+  authentication {
+    auth_type PASS
+    auth_pass {{ keepalived_password }}
+  }
+}
