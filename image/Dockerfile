@@ -8,7 +8,7 @@ CMD ["/container/tool/run"]
 # Install multiple process stack from baseimage
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/install-multiple-process-stack
 RUN apt-get -y update \
-    && /container/tool/install-multiple-process-stack \
+    && /container/tool/install-multiple-process-stack
 
 # Add service directory to /container/service
 ADD service /container/service
