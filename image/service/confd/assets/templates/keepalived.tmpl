@@ -23,13 +23,13 @@ vrrp_instance VI_1 {
     {{$keepalived_confd_run_on_fleet_node_metadata_value := getenv "KEEPALIVED_CONFD_RUN_ON_FLEET_NODE_METADATA_VALUE"}}
 
     {{range $machine := lsdir "/_coreos.com/fleet/machines/"}}
-    {{$machineRawData := getv (print $machine "/object")}}
+    {{$machineRawData := getv (print "/_coreos.com/fleet/machines/" $machine "/object")}}
     {{$machineData := json $machineRawData}}
 
     {{/* iterate metadata */}}
-    {{range $machineMetadata := $machineData.Metadata}}
+    {{range $machineMetadataKey, $machineMetadataValue := $machineData.Metadata}}
 
-    {{if eq $keepalived_confd_run_on_fleet_node_metadata_key .Key and eq keepalived_confd_run_on_fleet_node_metadata_value .Value }}
+    {{if eq $keepalived_confd_run_on_fleet_node_metadata_key $machineMetadataKey and eq $keepalived_confd_run_on_fleet_node_metadata_value $machineMetadataValue}}
     {{machineData.PublicIP}}
     {{end}}
     {{end}}
