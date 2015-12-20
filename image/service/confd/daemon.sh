@@ -2,8 +2,8 @@
 
 # get nodes from env var
 ETCD_NODES=""
-KEEPALIVED_CONFD_ETCD_NODES=($KEEPALIVED_CONFD_ETCD_NODES)
-for node in "${KEEPALIVED_CONFD_ETCD_NODES[@]}"
+KEEPALIVED_CONFD_ETCD_NODES_TABLE=($KEEPALIVED_CONFD_ETCD_NODES)
+for node in "${KEEPALIVED_CONFD_ETCD_NODES_TABLE[@]}"
 do
   #host var contain a variable name, we access to the variable value and cast it to a table
   node_txt=${!node}
