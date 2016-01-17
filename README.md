@@ -4,7 +4,7 @@
 
 A docker image to run Keepalived that get unicast peers from etcd thanks to confd.
 
-Example keepalived.tmpl also get metatada from fleet to add node to unicast peers.
+The keepalived.tmpl example also get metatada from fleet to know if the node belong to unicast peers.
 
 > [keepalived.org](http://keepalived.org/) /  [confd](https://github.com/kelseyhightower/confd) / [fleet](https://github.com/coreos/fleet)
 
