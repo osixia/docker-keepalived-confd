@@ -1,16 +1,3 @@
-KEEPALIVED_INTERFACE: eth0
-KEEPALIVED_PASSWORD: d0cker
-
-# For electing MASTER, highest priority wins.
-# to be MASTER, make 50 more than other machines
-KEEPALIVED_PRIORITY: 150
-
-KEEPALIVED_VIRTUAL_IPS:
-  - 192.168.1.231
-  - 192.168.1.232
-
-KEEPALIVED_NOTIFY: /container/service/keepalived/assets/notify.sh
-
 KEEPALIVED_CONFD_RUN_ON_FLEET_NODE_METADATA_KEY: keepalived
 KEEPALIVED_CONFD_RUN_ON_FLEET_NODE_METADATA_VALUE: true
 
