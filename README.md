@@ -9,3 +9,8 @@ The keepalived.tmpl example also get metatada from fleet to know if the node bel
 > [keepalived.org](http://keepalived.org/) /  [confd](https://github.com/kelseyhightower/confd) / [fleet](https://github.com/coreos/fleet)
 
 /!\ this documentation is a work in progress.
+
+## Under the hood: osixia/keepalived
+
+This image is based on osixia/keepalived.
+More info: https://github.com/osixia/docker-keepalived
