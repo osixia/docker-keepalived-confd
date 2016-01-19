@@ -6,9 +6,9 @@ log-helper level eq trace && set -x
 
 # get nodes from env var
 ETCD_NODES=""
-for node in $(complex-bash-env iterate "${KEEPALIVED_CONFD_ETCD_NODES}")
+for node in $(complex-bash-env iterate KEEPALIVED_CONFD_ETCD_NODES)
 do
-  ETCD_NODES="$ETCD_NODES -node ${node}"
+  ETCD_NODES="$ETCD_NODES -node ${!node}"
 done
 
 # etcd certs
