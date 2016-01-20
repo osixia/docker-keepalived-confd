@@ -16,4 +16,4 @@ owner = "root"
 mode = "0644"
 
 # Reload the actual service once the new config is in place
-reload_cmd = "/usr/bin/sv reload keepalived"
+reload_cmd = "/usr/bin/sv reload /container/run/process/keepalived"
