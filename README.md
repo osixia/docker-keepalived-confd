@@ -1,6 +1,6 @@
 # osixia/keepalived-confd
 
-[![](https://badge.imagelayers.io/osixia/keepalived-confd:latest.svg)](https://imagelayers.io/?images=osixia/keepalived-confd:latest 'Get your own badge on imagelayers.io') | Latest release: 0.1.0 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/keepalived-confd/) 
+[![](https://badge.imagelayers.io/osixia/keepalived-confd:latest.svg)](https://imagelayers.io/?images=osixia/keepalived-confd:latest 'Get your own badge on imagelayers.io') | Latest release: 0.1.1 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/keepalived-confd/) 
 
 A docker image to run Keepalived that get unicast peers from etcd thanks to confd.
 

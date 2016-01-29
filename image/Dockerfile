@@ -1,4 +1,4 @@
-FROM osixia/keepalived:0.2.0
+FROM osixia/keepalived:0.2.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Add multiple process stack from baseimage
