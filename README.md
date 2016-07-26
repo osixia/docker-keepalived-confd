@@ -7,7 +7,7 @@
 
 [hub]: https://hub.docker.com/r/osixia/keepalived-confd/
 
-Latest release: 0.1.1 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/keepalived-confd/) 
+Latest release: 0.1.2 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/keepalived-confd/) 
 
 A docker image to run Keepalived that get unicast peers from etcd thanks to confd.
 
