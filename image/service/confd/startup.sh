@@ -4,10 +4,6 @@
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/log-helper
 log-helper level eq trace && set -x
 
-
-# add bin
-ln -sf ${CONTAINER_SERVICE_DIR}/confd/assets/confd /usr/local/bin/confd
-
 # add config file
 ln -sf ${CONTAINER_SERVICE_DIR}/confd/assets/confd.toml /etc/confd/confd.toml
 
