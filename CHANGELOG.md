@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.24
+  - Upgrade baseimage to keepalived:1.2.24
+  - We now use the osixia/keepalived baseimage version number as docker image tag
+
 ## 0.1.3
   - Upgrade baseimage to keepalived:0.2.3
   - Confd v0.12.0-alpha3
