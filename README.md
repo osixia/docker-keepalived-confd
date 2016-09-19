@@ -8,7 +8,7 @@
 
 Latest release: 1.2.24 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/keepalived-confd/) 
 
-**A docker image to run Keepalived that get unicast peers from etcd thanks to confd.**
+**A docker image to run Keepalived that get unicast peers from any key value store (Redis, ETCD, Consul ...) thanks to confd.**
 
 The keepalived.tmpl example also get metatada from fleet to know if the node belong to unicast peers.
 
