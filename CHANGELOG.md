@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.0
+  - Upgrade baseimage to keepalived:1.3.0
+
 ## 1.2.24
   - Upgrade baseimage to keepalived:1.2.24
   - We now use the osixia/keepalived baseimage version number as docker image tag
