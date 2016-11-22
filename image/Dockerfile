@@ -1,4 +1,4 @@
-FROM osixia/keepalived:1.3.0
+FROM osixia/keepalived:1.3.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 ENV CONFD_VERSION=0.12.0-alpha3
