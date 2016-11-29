@@ -6,7 +6,7 @@
 
 [hub]: https://hub.docker.com/r/osixia/keepalived-confd/
 
-Latest release: 1.3.1 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/keepalived-confd/) 
+Latest release: 1.3.2 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/keepalived-confd/) 
 
 **A docker image to run Keepalived that get unicast peers from any key value store (Redis, ETCD, Consul...) thanks to confd.**
 
