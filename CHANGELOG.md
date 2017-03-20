@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.5
+  - Upgrade baseimage to keepalived:1.3.5
+
 ## 1.3.4
   - Upgrade baseimage to keepalived:1.3.4
 
