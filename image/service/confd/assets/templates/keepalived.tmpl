@@ -11,20 +11,17 @@ vrrp_instance VI_1 {
   nopreempt
 
   unicast_peer {
-    {{$keepalived_confd_run_on_fleet_node_metadata_key := getenv "KEEPALIVED_CONFD_RUN_ON_FLEET_NODE_METADATA_KEY"}}
-    {{$keepalived_confd_run_on_fleet_node_metadata_value := getenv "KEEPALIVED_CONFD_RUN_ON_FLEET_NODE_METADATA_VALUE"}}
+    {{$keepalived_confd_kubernetes_service_namespace := getenv "KEEPALIVED_CONFD_KUBERNETES_SERVICE_NAMESPACE"}}
+    {{$keepalived_confd_kubernetes_service_name := getenv "KEEPALIVED_CONFD_KUBERNETES_SERVICE_NAME"}}
+    {{$keepalived_confd_kubernetes_node_name := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_NAME"}}
 
-    {{range $machine := lsdir "/_coreos.com/fleet/machines/"}}
-    {{$machineRawData := getv (print "/_coreos.com/fleet/machines/" $machine "/object")}}
-    {{$machineData := json $machineRawData}}
+    {{$serviceRawData := getv (print "/registry/services/endpoints/" $keepalived_confd_kubernetes_service_namespace "/" $keepalived_confd_kubernetes_service_name)}}
+    {{$serviceData := json $serviceRawData}}
 
-    {{/* iterate metadata */}}
-    {{range $machineMetadataKey, $machineMetadataValue := $machineData.Metadata}}
-
-    {{if eq (toLower $keepalived_confd_run_on_fleet_node_metadata_key) (toLower $machineMetadataKey)}}
-    {{if eq (toLower $keepalived_confd_run_on_fleet_node_metadata_value) (toLower $machineMetadataValue)}}
-    {{$machineData.PublicIP}}
-    {{end}}
+    {{range $subset := $serviceData.subsets }}
+    {{range $addresse := $subset.addresses }}
+    {{if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $addresse.nodeName)}}
+    {{$addresse.ip}}
     {{end}}
     {{end}}
     {{end}}
