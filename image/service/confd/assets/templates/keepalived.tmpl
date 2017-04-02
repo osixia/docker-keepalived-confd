@@ -1,40 +1,47 @@
+global_defs {
+  default_interface {{ KEEPALIVED_INTERFACE }}
+}
+
 vrrp_instance VI_1 {
-  interface {{ keepalived_interface }}
+  interface {{ KEEPALIVED_INTERFACE }}
 
   track_interface {
-    {{ keepalived_interface }}
+    {{ KEEPALIVED_INTERFACE }}
   }
 
   state BACKUP
   virtual_router_id 51
-  priority {{ keepalived_priority }}
+  priority {{ KEEPALIVED_PRIORITY }}
   nopreempt
 
   unicast_peer {
-    {{$keepalived_confd_kubernetes_service_namespace := getenv "KEEPALIVED_CONFD_KUBERNETES_SERVICE_NAMESPACE"}}
-    {{$keepalived_confd_kubernetes_service_name := getenv "KEEPALIVED_CONFD_KUBERNETES_SERVICE_NAME"}}
-    {{$keepalived_confd_kubernetes_node_name := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_NAME"}}
-
-    {{$serviceRawData := getv (print "/registry/services/endpoints/" $keepalived_confd_kubernetes_service_namespace "/" $keepalived_confd_kubernetes_service_name)}}
-    {{$serviceData := json $serviceRawData}}
-
-    {{range $subset := $serviceData.subsets }}
-    {{range $addresse := $subset.addresses }}
-    {{if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $addresse.nodeName)}}
-    {{$addresse.ip}}
-    {{end}}
-    {{end}}
-    {{end}}
+    {{- $keepalived_confd_kubernetes_service_namespace := getenv "KEEPALIVED_CONFD_KUBERNETES_SERVICE_NAMESPACE"}}
+    {{- $keepalived_confd_kubernetes_service_name := getenv "KEEPALIVED_CONFD_KUBERNETES_SERVICE_NAME"}}
+    {{- $keepalived_confd_kubernetes_node_name := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_NAME"}}
+    {{- $serviceRawData := getv (print "/registry/services/endpoints/" $keepalived_confd_kubernetes_service_namespace "/" $keepalived_confd_kubernetes_service_name)}}
+    {{- $serviceData := json $serviceRawData}}
+    {{- range $subset := $serviceData.subsets }}
+      {{- range $addresse := $subset.addresses }}
+        {{- if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $addresse.nodeName)}}
+          {{ $addresse.ip}}
+        {{- end}}
+      {{- end}}
+      {{- range $addresse := $subset.notReadyAddresses }}
+        {{- if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $addresse.nodeName)}}
+          {{ $addresse.ip}}
+        {{- end}}
+      {{- end}}
+    {{- end}}
   }
 
   virtual_ipaddress {
-    {{ keepalived_virtual_ips }}
+    {{ KEEPALIVED_VIRTUAL_IPS }}
   }
 
   authentication {
     auth_type PASS
-    auth_pass {{ keepalived_password }}
+    auth_pass {{ KEEPALIVED_PASSWORD }}
   }
 
-  {{ keepalived_notify }}
+  {{ KEEPALIVED_NOTIFY }}
 }
