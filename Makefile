@@ -1,5 +1,5 @@
 NAME = osixia/keepalived-confd
-VERSION = 1.3.5
+VERSION = 1.3.6
 
 .PHONY: all build build-nocache test tag_latest release
 
