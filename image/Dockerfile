@@ -13,7 +13,9 @@ RUN apk update \ \
     && /container/tool/add-service-available :ssl-tools \
     && curl -o /usr/local/bin/confd -SL https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 \
     && chmod +x /usr/local/bin/confd \
-    && apk add curl ca-certificates \
+    && apk del \
+       curl \
+       ca-certificates \
     && rm -rf /var/cache/apk/*
 
 # Add service directory to /container/service
