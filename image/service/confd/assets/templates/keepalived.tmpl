@@ -11,25 +11,32 @@ vrrp_instance VI_1 {
 
   state BACKUP
   virtual_router_id 51
+
   priority {{ KEEPALIVED_PRIORITY }}
   nopreempt
 
+  garp_master_repeat 0
+  garp_lower_priority_repeat 0
+  garp_master_refresh 0
+  garp_master_refresh_repeat 0
+
   unicast_peer {
-    {{- $keepalived_confd_kubernetes_service_namespace := getenv "KEEPALIVED_CONFD_KUBERNETES_SERVICE_NAMESPACE"}}
-    {{- $keepalived_confd_kubernetes_service_name := getenv "KEEPALIVED_CONFD_KUBERNETES_SERVICE_NAME"}}
     {{- $keepalived_confd_kubernetes_node_name := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_NAME"}}
-    {{if exists (print "/registry/services/endpoints/" $keepalived_confd_kubernetes_service_namespace "/" $keepalived_confd_kubernetes_service_name)}}
-      {{- $serviceRawData := getv (print "/registry/services/endpoints/" $keepalived_confd_kubernetes_service_namespace "/" $keepalived_confd_kubernetes_service_name)}}
-      {{- $serviceData := json $serviceRawData}}
-      {{- range $subset := $serviceData.subsets }}
-        {{- range $addresse := $subset.addresses }}
-          {{- if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $addresse.nodeName)}}
-            {{ $addresse.ip}}
-          {{- end}}
-        {{- end}}
-        {{- range $addresse := $subset.notReadyAddresses }}
-          {{- if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $addresse.nodeName)}}
-            {{ $addresse.ip}}
+    {{- $keepalived_confd_kubernetes_node_label_key := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_LABEL_KEY"}}
+    {{- $keepalived_confd_kubernetes_node_label_value := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_LABEL_VALUE"}}
+    {{- range $nodeKey := ls "/registry/minions" }}
+      {{- $nodeRawData := getv (printf "/registry/minions/%s" $nodeKey)}}
+      {{- $nodeData := json $nodeRawData}}
+      {{- if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $nodeData.metadata.name)}}
+        {{- range $labelKey, $labelValue:= $nodeData.metadata.labels}}
+          {{- if eq $keepalived_confd_kubernetes_node_label_key $labelKey}}
+            {{- if eq $keepalived_confd_kubernetes_node_label_value $labelValue}}
+              {{- range $addresse := $nodeData.status.addresses }}
+                {{- if eq (toLower "InternalIP") (toLower $addresse.type)}}
+                  {{ $addresse.address}}
+                {{- end}}
+              {{- end}}
+            {{- end}}
           {{- end}}
         {{- end}}
       {{- end}}
