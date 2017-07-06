@@ -1,7 +1,7 @@
-FROM osixia/keepalived:1.3.6
+FROM osixia/keepalived:1.3.5-1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
-ENV CONFD_VERSION=0.12.0-alpha3
+ARG CONFD_VERSION=0.12.0-alpha3
 
 # Add multiple process stack from baseimage
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-multiple-process-stack
