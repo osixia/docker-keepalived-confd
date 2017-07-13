@@ -24,16 +24,18 @@ vrrp_instance VI_1 {
     {{- $keepalived_confd_kubernetes_node_name := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_NAME"}}
     {{- $keepalived_confd_kubernetes_node_label_key := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_LABEL_KEY"}}
     {{- $keepalived_confd_kubernetes_node_label_value := getenv "KEEPALIVED_CONFD_KUBERNETES_NODE_LABEL_VALUE"}}
-    {{- range $nodeKey := ls "/registry/minions" }}
-      {{- $nodeRawData := getv (printf "/registry/minions/%s" $nodeKey)}}
-      {{- $nodeData := json $nodeRawData}}
-      {{- if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $nodeData.metadata.name)}}
-        {{- range $labelKey, $labelValue:= $nodeData.metadata.labels}}
-          {{- if eq $keepalived_confd_kubernetes_node_label_key $labelKey}}
-            {{- if eq $keepalived_confd_kubernetes_node_label_value $labelValue}}
-              {{- range $addresse := $nodeData.status.addresses }}
-                {{- if eq (toLower "InternalIP") (toLower $addresse.type)}}
-                  {{ $addresse.address}}
+    {{- if exists "/registry/minions"}}
+      {{- range $nodeKey := ls "/registry/minions" }}
+        {{- $nodeRawData := getv (printf "/registry/minions/%s" $nodeKey)}}
+        {{- $nodeData := json $nodeRawData}}
+        {{- if ne (toLower $keepalived_confd_kubernetes_node_name) (toLower $nodeData.metadata.name)}}
+          {{- range $labelKey, $labelValue:= $nodeData.metadata.labels}}
+            {{- if eq $keepalived_confd_kubernetes_node_label_key $labelKey}}
+              {{- if eq $keepalived_confd_kubernetes_node_label_value $labelValue}}
+                {{- range $addresse := $nodeData.status.addresses }}
+                  {{- if eq (toLower "InternalIP") (toLower $addresse.type)}}
+                    {{ $addresse.address}}
+                  {{- end}}
                 {{- end}}
               {{- end}}
             {{- end}}
