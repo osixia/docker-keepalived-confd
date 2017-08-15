@@ -14,6 +14,7 @@ ln -sf ${CONTAINER_SERVICE_DIR}/confd/assets/conf.d/* /etc/confd/conf.d/
 ln -sf ${CONTAINER_SERVICE_DIR}/confd/assets/templates/* /etc/confd/templates/
 
 # override the keepalived image config file with the confd template
+# so keepalived startup script do variable replacements
 ln -sf ${CONTAINER_SERVICE_DIR}/confd/assets/templates/keepalived.tmpl ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
 
 

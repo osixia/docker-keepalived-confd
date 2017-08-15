@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.5-1
+  - Upgrade baseimage to keepalived:1.3.5-1
+
 ## 1.3.5
   - Upgrade baseimage to keepalived:1.3.5
   - RIP fleet, the base config now takes its peers from kubernetes
