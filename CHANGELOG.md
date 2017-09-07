@@ -1,6 +1,9 @@
 # Changelog
 
-## 1.3.5-1
+## 1.3.6-1
+  - Confd v0.13.0
+
+## 1.3.6
   - Upgrade baseimage to keepalived:1.3.6
   - Confd v0.12.0
 
