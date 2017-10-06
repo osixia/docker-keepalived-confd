@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.6-2
+  - Make it compataible with kubernetes etcdv3 + json
+
 ## 1.3.6-1
   - Confd v0.13.0
 
