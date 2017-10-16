@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.8
+  - Confd v0.14.0
+  - Upgrade baseimage to keepalived:1.3.8
+
 ## 1.3.6-2
   - Make it compataible with kubernetes etcdv3 + json
   - Upgrade baseimage to keepalived:1.3.6-1
