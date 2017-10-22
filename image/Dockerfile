@@ -1,4 +1,4 @@
-FROM osixia/keepalived:1.3.8
+FROM osixia/keepalived:1.3.9
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 ARG CONFD_VERSION=0.14.0
