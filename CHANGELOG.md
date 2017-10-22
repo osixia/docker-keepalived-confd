@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.9
+  - Upgrade baseimage to keepalived:1.3.9
+
 ## 1.3.8
   - Confd v0.14.0
   - Upgrade baseimage to keepalived:1.3.8
