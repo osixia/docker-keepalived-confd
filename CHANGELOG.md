@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project follows osixia/docker-keepalived baseimage versioning.
 
+## [1.4.1] - 2018-01-29
+### Changed
+  - Upgrade Confd version to v0.15.0
+  - Upgrade baseimage to keepalived:1.4.1
+
 ## [1.4.0] - 2018-01-18
 ### Changed
   - Upgrade baseimage to keepalived:1.4.0

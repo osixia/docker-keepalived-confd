@@ -1,7 +1,7 @@
-FROM osixia/keepalived:1.4.0
+FROM osixia/keepalived:1.4.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
-ARG CONFD_VERSION=0.14.0
+ARG CONFD_VERSION=0.15.0
 
 # Add multiple process stack from baseimage
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-multiple-process-stack
