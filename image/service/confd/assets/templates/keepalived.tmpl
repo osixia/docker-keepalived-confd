@@ -5,10 +5,6 @@ global_defs {
 vrrp_instance VI_1 {
   interface {{ KEEPALIVED_INTERFACE }}
 
-  track_interface {
-    {{ KEEPALIVED_INTERFACE }}
-  }
-
   state BACKUP
   virtual_router_id 51
 
@@ -16,7 +12,7 @@ vrrp_instance VI_1 {
   nopreempt
 
   garp_master_repeat 0
-  garp_lower_priority_repeat 0
+  garp_lower_prio_repeat 0
   garp_master_refresh 0
   garp_master_refresh_repeat 0
 
