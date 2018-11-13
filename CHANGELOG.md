@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project follows osixia/docker-keepalived-confd baseimage versioning.
 
+## [2.0.10] - 2018-11-13
+### Changed
+  - Upgrade baseimage to keepalived:2.0.10
+  - garp_lower_priority_repeat changed to garp_lower_prio_repeat in keepalived.tmpl
+
+### Removed 
+  - track_interface in keepalived.conf
+
 ## [1.4.5] - 2018-06-02
 ### Changed
   - Upgrade baseimage to keepalived:1.4.5
