@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project follows osixia/docker-keepalived-confd baseimage versioning.
 
+## [2.0.17] - 2019-07-05
+### Changed
+  - Upgrade baseimage to keepalived:2.0.17
+
 ## [2.0.16] - 2019-05-29
 ### Changed
   - Upgrade baseimage to keepalived:2.0.16
@@ -130,6 +134,7 @@ and this project follows osixia/docker-keepalived-confd baseimage versioning.
 ## 0.1.0 - 2016-01-27
 Initial release
 
+[2.0.17]: https://github.com/osixia/docker-keepalived-confd/compare/v2.0.16...v2.0.17
 [2.0.16]: https://github.com/osixia/docker-keepalived-confd/compare/v2.0.15...v2.0.16
 [2.0.15]: https://github.com/osixia/docker-keepalived-confd/compare/v2.0.13...v2.0.15
 [2.0.13]: https://github.com/osixia/docker-keepalived-confd/compare/v2.0.12...v2.0.13
