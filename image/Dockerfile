@@ -1,4 +1,4 @@
-FROM osixia/keepalived:2.0.17
+FROM osixia/keepalived:2.0.19
 
 ARG CONFD_VERSION=0.16.0
 
@@ -6,15 +6,7 @@ ARG CONFD_VERSION=0.16.0
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-multiple-process-stack
 RUN apk update \
    && /container/tool/add-multiple-process-stack \
-   && apk add \
-   ca-certificates \
-   curl \
    && /container/tool/add-service-available :ssl-tools \
-   && curl -o /usr/local/bin/confd -SL https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 \
-   && chmod +x /usr/local/bin/confd \
-   && apk del \
-   curl \
-   ca-certificates \
    && rm -rf /var/cache/apk/*
 
 # Add service directory to /container/service
