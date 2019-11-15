@@ -1,4 +1,4 @@
-FROM osixia/keepalived:2.0.17
+FROM osixia/keepalived:2.0.19
 
 ARG CONFD_VERSION=0.16.0
 
